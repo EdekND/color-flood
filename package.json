@@ -4,7 +4,7 @@
   "description": "Simple color game created for practise.",
   "private": true,
   "author": "Karol Dębiński <kardebinski@gmail.com>",
-  "homepage": "http://kdebinski.github.io/ColorFlood",
+  "homepage": "http://kdebinski.github.io/color-flood",
   "devDependencies": {
     "enzyme": "^2.4.1",
     "react-addons-test-utils": "^15.3.2",
