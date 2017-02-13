@@ -8,3 +8,10 @@
  	 border: 1px solid black;
   	box-sizing: border-box;
 }
+
+@media (max-width: 900px) {
+	.menu {
+		width: 52vw;
+		height: 10vw;
+	}
+}

@@ -1,15 +1,11 @@
 .sizePicker{
   background: grey;
-  display: inline-block;
-  float:center;
-  width: 2vw;
-  height: 2vw;
+  width: 10%;
+  height: 1%;
   min-width: 20px;
   min-height: 20px;
-  border: 1px solid black;
   text-align: center;
   box-sizing: border-box;
-  margin: 1%;
   cursor: pointer;
 }
 .sizePicker p{
