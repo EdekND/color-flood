@@ -4,10 +4,10 @@ import Picker from '../Picker/Picker';
 
 const Menu = (props) => {
  	let pickers = props.colors.map((v)=>{
- 		return (<Picker key={"picker-"+v} color={v} onClick={handleClick} />);
+ 		return (<Picker key={"picker-"+v} color={v} onClick={onPickerClick} />);
  	});
- 	function handleClick(color){
- 		props.pickerHandler(color);
+ 	function onPickerClick(color){
+ 		props.onPickerClick(color);
  	}
   return (
     <div className="menu" >

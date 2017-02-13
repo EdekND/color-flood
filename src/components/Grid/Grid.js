@@ -3,8 +3,7 @@ import './Grid.css';
 import Field from '../Field/Field';
 
 const Grid = (props) => {
-  let fields =[];
-  fields = generateFieldsFromGameState(props.gameState,props.size);
+  let fields = generateFieldsFromGameState(props.gameState,props.size);
 
   return (
     <div className="gridwrapper">

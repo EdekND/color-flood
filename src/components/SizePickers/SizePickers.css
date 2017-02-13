@@ -1,5 +1,4 @@
 .sizePickers{
-    /*width: 17vw;*/
     width: 50%;
     height: 3vw;
     min-width: 165px;
@@ -13,7 +12,6 @@
     padding-top: .7%;
     padding-bottom: .7%;
 }
-
 
 @media (max-width: 900px) {
   .sizePickers{

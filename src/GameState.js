@@ -5,12 +5,11 @@ class Element{
 		this.color = color
 	}
 }
-
 class GameState {
-	constructor(size=5,colors=[],obj){
+	constructor(size=5,colors=[],onWinCallback){
 		this.size = size;
 		this.rows = generateInitialRows(size,colors);
-		this.appObj = obj;
+		this.onWinCallback = onWinCallback;
 	}
 	checkIfWon(color){
 		let result = true;
@@ -23,7 +22,7 @@ class GameState {
 			}
 		}
 		if(result){
-			this.appObj.onWin();
+			this.onWinCallback();
 		}
 	}
 	colorFill(color){
@@ -38,23 +37,20 @@ class GameState {
 
 	getAllAdjacentElementsByColor(color){
 		let elements = [],
-			base = [],
-			nextStep  = true,
-			foundElements,
-			xd = 0;
+		base = [],
+		nextStep  = true,
+		foundElements;
+
 		elements.push(this.rows[0][0]);
 		base.push(this.rows[0][0]);
+
 		while(nextStep){
-			foundElements = this.lookForNeighboors(base,elements.slice(0),color);
-			xd++;
+			foundElements = this.lookForElementsInFourDirections(base,elements.slice(0),color);
 			if(foundElements.length>0){
 				for(let i=0;i<foundElements.length;i++){
 					elements.push(foundElements[i]);
 				}
 				base = foundElements;
-				if(xd===300){
-					break;
-				}
 			}else{
 				nextStep = false;
 			}
@@ -62,92 +58,69 @@ class GameState {
 
 		return elements;
 	}
-	isAlreadyFound(element,arr){
-		let result = false;
-		for(let i=0;i<arr.length;i++){
-			if(element === arr[i]){
-				result = true;
-				break;
-			}
-		}
-		return result;
-	}
-	isInBase(element,arr){
-		let result = false;
-		for(let i=0;i<arr.length;i++){
-			if(element === arr[i]){
-				result = true;
-				break;
-			}
-		}
-		return result;
-	}
 
-	lookForNeighboors(base,alreadyFoundElements,color){
-		let nextBase = [];
-		let found = alreadyFoundElements;
+	lookForElementsInFourDirections(base,alreadyFoundElements,color){
+		let nextBase = [],
+			found = alreadyFoundElements;
+
 		for(let i=0;i<base.length;i++){
+			
+			//calculating coords from id
 			let row = Math.floor(base[i].id / this.size),
-			 	col = base[i].id - row*this.size,
-			 	elementToCheck;
+				col = base[i].id - row*this.size,
+				elementToCheck;
 			
 			//check up
 			if(row > 0){
 				elementToCheck = this.rows[row-1][col];
-				if(!this.isInBase(elementToCheck,base)){
-					if(elementToCheck.color === color){
-						if(!this.isAlreadyFound(elementToCheck,found)){
-							found.push(elementToCheck);
-							nextBase.push(elementToCheck);
-						}	
-					}	
+				if(checkConditions(elementToCheck,base,color,found)){
+					found.push(elementToCheck);
+					nextBase.push(elementToCheck);
 				}
 			}
 			//check down
 			if(row < (this.size-1)){
 				elementToCheck = this.rows[row+1][col];
-				if(!this.isInBase(elementToCheck,base)){
-					if(elementToCheck.color === color){
-						if(!this.isAlreadyFound(elementToCheck,found)){
-							found.push(elementToCheck);
-							nextBase.push(elementToCheck);
-						}	
-					}	
+				if(checkConditions(elementToCheck,base,color,found)){
+					found.push(elementToCheck);
+					nextBase.push(elementToCheck);
 				}
 			}
 			//check left
 			if(col > 0){
 				elementToCheck = this.rows[row][col-1];
-				if(!this.isInBase(elementToCheck,base)){
-					if(elementToCheck.color === color){
-						if(!this.isAlreadyFound(elementToCheck,found)){
-							found.push(elementToCheck);
-							nextBase.push(elementToCheck);
-						}	
-					}	
+				if(checkConditions(elementToCheck,base,color,found)){
+					found.push(elementToCheck);
+					nextBase.push(elementToCheck);
 				}
 			}
+			
 			//check right
 			if(col < (this.size-1)){
 				elementToCheck = this.rows[row][col+1];
-				if(!this.isInBase(elementToCheck,base)){
-					if(elementToCheck.color === color){
-						if(!this.isAlreadyFound(elementToCheck,found)){
-							found.push(elementToCheck);
-							nextBase.push(elementToCheck);
-						}	
-					}	
-				}
+				if(checkConditions(elementToCheck,base,color,found)){
+					found.push(elementToCheck);
+					nextBase.push(elementToCheck);
+				}	
 			}
 		}
 		return nextBase;
 	}
 }
-
+function checkConditions(element,base,color,found){
+	if(!isInArray(element,base)){
+		if(hasTheSameColor(element,color)){
+			if(!isInArray(element,found)){
+				return true;
+			}	
+		}	
+	}
+	return false;
+}
 function generateInitialRows(size,colors){
 	let rows=[],
-		row = [],
-		id;
+	row = [],
+	id;
 	for(let i=0;i<size;i++){
 		row=[];
 		for(let j=0;j<size;j++){
@@ -161,6 +134,19 @@ function generateInitialRows(size,colors){
 function generateElementWithRandomColor(id,colors){
 	let colorId = Math.floor(Math.random() * colors.length);
 	return new Element(id,colors[colorId]);
+}
+function hasTheSameColor(element,color){
+	return element.color===color;
+}
+function isInArray(element,arr){
+	let result = false;
+	for(let i=0;i<arr.length;i++){
+		if(element === arr[i]){
+			result = true;
+			break;
+		}
+	}
+	return result;
 }
 
 export {GameState};

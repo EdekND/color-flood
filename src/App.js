@@ -14,27 +14,25 @@ const COLORS = ['blue','red','green','yellow','orange'];
 class App extends Component {
   constructor(props){
   	super(props);
-    this.pickerHandler  = this.pickerHandler.bind(this);
-    this.sizePickersHandler = this.sizePickersHandler.bind(this);
+    this.onPickerClick  = this.onPickerClick.bind(this);
+    this.onSizePickerClick = this.onSizePickerClick.bind(this);
     this.incrementCount  = this.incrementCount.bind(this);    
     this.onWin  = this.onWin.bind(this);
     this.state = {
-      gameState: new GameState(5,COLORS,this),
+      gameState: new GameState(5,COLORS,this.onWin),
       count: 0,
       won: false,
       size: 5
     };
-     
-
   }
 
-  pickerHandler(color){
+  onPickerClick(color){
     this.state.gameState.colorFill(color);
     this.incrementCount();
   }
-  sizePickersHandler(size){
+  onSizePickerClick(size){
     this.setState({
-      gameState: new GameState(size,COLORS,this),
+      gameState: new GameState(size,COLORS,this.onWin),
       count: 0,
       size: size,
       won: false
@@ -44,10 +42,10 @@ class App extends Component {
     this.setState({
       count: this.state.count + 1
     });
-}
+  }
   newGame() {
     this.setState({
-      gameState: new GameState(this.state.size,COLORS,this),
+      gameState: new GameState(this.state.size,COLORS,this.onWin),
       count: 0,
       size: this.state.size,
       won: false
@@ -65,7 +63,7 @@ class App extends Component {
     }else{
       wonOrNot =
         (<div>
-            <Menu colors={COLORS} pickerHandler={this.pickerHandler} moves={this.state.count}/>
+            <Menu colors={COLORS} onPickerClick={this.onPickerClick} moves={this.state.count}/>
             <Grid gameState={this.state.gameState} colors={COLORS} size={this.state.size} />
           </div>)
     }
@@ -74,7 +72,7 @@ class App extends Component {
     <h1>Color Flood</h1>
             <div className="buttons">
               <div className="newgame" onClick={() => this.newGame()}><p>New Game</p></div>
-              <SizePickers sizes={SIZES} onClick={this.sizePickersHandler} />
+              <SizePickers sizes={SIZES} onClick={this.onSizePickerClick} />
             </div>
       {wonOrNot}
       </div>)
@@ -82,16 +80,3 @@ class App extends Component {
 }
 
 export default App;
-
-
-// return (
-//       <div className="app">
-//         <h1>Color Flood</h1>
-//         <div className="buttons">
-//           <div className="newgame" onClick={() => this.newGame()}><p>New Game</p></div>
-//           <SizePickers sizes={SIZES} onClick={this.sizePickersHandler} />
-//         </div>
-//         <Menu colors={COLORS} pickerHandler={this.pickerHandler} moves={this.state.count}/>
-//         <Grid gameState={this.state.gameState} colors={COLORS} size={this.state.size} />
-//       </div>
-//       )
