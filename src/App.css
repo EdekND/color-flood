@@ -38,12 +38,16 @@ h1{
 	margin-top: 0;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 900px) {
+  .app {
+  width:50vw;
+  }
   .newgame{
     float: center;
     width: 100%;
     margin-bottom: 2%;
     padding: 2%;
+    min-height: 20px;
   }
 }
 

@@ -1,7 +1,7 @@
 .sizePickers{
     /*width: 17vw;*/
     width: 50%;
-    height: auto;
+    height: 3vw;
     min-width: 165px;
     text-align: center;
     margin: 0 auto;   
@@ -10,14 +10,16 @@
     display: inline-block;
     float: right;
     box-sizing: border-box;
-    padding-top: 1%;
+    padding-top: .7%;
+    padding-bottom: .7%;
 }
 
 
-@media (max-width: 800px) {
+@media (max-width: 900px) {
   .sizePickers{
     float: center;
     width: 100%;
+    height: auto;
   }
 }
 
