@@ -1,0 +1,24 @@
+{
+  "name": "colorflood",
+  "version": "0.0.1",
+  "description": "Simple color game created for practise.",
+  "private": true,
+  "author": "Karol Dębiński <kardebinski@gmail.com>",
+  "homepage": "http://kdebinski.github.io/ColorFlood",
+  "devDependencies": {
+    "enzyme": "^2.4.1",
+    "react-addons-test-utils": "^15.3.2",
+    "react-scripts": "0.6.1"
+  },
+  "dependencies": {
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+
+}

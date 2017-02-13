@@ -1,0 +1,10 @@
+.grid {
+  	text-align: center;
+  	width:30vw;
+	height:30vw;
+  	margin: 0 auto;
+  	display: inline-block;
+}
+.gridwrapper{
+	width: 100%;	
+}

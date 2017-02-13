@@ -1,0 +1,24 @@
+.sizePickers{
+    /*width: 17vw;*/
+    width: 50%;
+    height: auto;
+    min-width: 165px;
+    text-align: center;
+    margin: 0 auto;   
+    background: lightgrey; 
+    border: 1px solid black;
+    display: inline-block;
+    float: right;
+    box-sizing: border-box;
+    padding-top: 1%;
+}
+
+
+@media (max-width: 800px) {
+  .sizePickers{
+    float: center;
+    width: 100%;
+  }
+}
+
+

@@ -1,0 +1,10 @@
+.menu {
+	width: 26vw;
+	height: 5vw;
+  	text-align: center;
+  	margin: 0 auto;
+  	display: inline-block;
+  	background: lightgrey; 
+ 	 border: 1px solid black;
+  	box-sizing: border-box;
+}

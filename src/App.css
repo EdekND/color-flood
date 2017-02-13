@@ -1,0 +1,49 @@
+.app {
+  text-align: center;
+  width:40vw;
+  margin: 0 auto;
+  background: lightblue; 
+  padding-bottom: 2%;
+  padding-top: 1%;
+
+}
+.newgame{
+	box-sizing: border-box;
+	background-color: lightgrey;
+	border: 1px solid black;
+	width: 15vw;
+	height: 3vw;
+	margin: 0 auto;
+	display: inline-block;
+	float: left;
+	/*padding-top:2%;*/
+	cursor: pointer;
+	text-align: center;
+	vertical-align: middle;
+
+
+}
+.buttons{
+	display: inline-block;
+	width: 90%;
+}
+.newgame p{
+  padding: 0;
+  margin: 0;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+h1{
+	margin-top: 0;
+}
+
+@media (max-width: 800px) {
+  .newgame{
+    float: center;
+    width: 100%;
+    margin-bottom: 2%;
+    padding: 2%;
+  }
+}
+
