@@ -4,7 +4,7 @@ Project created for practising my programming skills.
 
 [LIVE](https://kdebinski.github.io/color-flood/)
 
-# How to run it
+# How to run it for development
 1. Download repo
 2. cd to it
 3. npm install
